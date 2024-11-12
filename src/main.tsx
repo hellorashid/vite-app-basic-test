@@ -22,7 +22,7 @@ const schema = {
           type: 'string',
         }, 
         completed: { 
-          type: 'boolean',
+          type: 'string',
         }
       }
     }

@@ -1,11 +1,13 @@
 import './App.css'
 
-import { useBasic, useQuery } from '@basictech/react'
+import { useBasic, useQuery,  } from '@basictech/react'
+import hello from "@basictech/schema"
 
 function App() {
-  const { signin, isSignedIn, user, db, signout} = useBasic()
+  console.log(hello())
+  const { signin, isSignedIn, user, db, signout, dbStatus} = useBasic()
 
-  const data = useQuery(db.collection('todos').getAll() )
+  const data = useQuery(() => db.collection('todos').getAll() )
 
 
   return (
@@ -24,6 +26,8 @@ function App() {
           gap: '12px',
           zIndex: 1000
         }}>
+
+          {dbStatus}
           {isSignedIn && <p style={{ margin: 0 }}>Signed in as {user?.email}</p>}
           {!isSignedIn ? (
             <button 
@@ -80,7 +84,7 @@ function App() {
                 if (e.key === 'Enter') {
                   db.collection('todos').add({
                     title: e.currentTarget.value,
-                    completed: false
+                    completed: 'false'
                   })
                   e.currentTarget.value = ''
                 }
