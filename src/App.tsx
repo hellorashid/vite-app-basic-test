@@ -1,13 +1,13 @@
 import './App.css'
 
 import { useBasic, useQuery,  } from '@basictech/react'
-import hello from "@basictech/schema"
 
 function App() {
-  console.log(hello())
-  const { signin, isSignedIn, user, db, signout, dbStatus} = useBasic()
+
+  const { signin, isSignedIn, user, db, dbStatus, signout } = useBasic()
 
   const data = useQuery(() => db.collection('todos').getAll() )
+
 
 
   return (
@@ -92,7 +92,7 @@ function App() {
             />
           </div>
 
-          {data.map((item: any) => (
+          {data?.map((item: any) => (
             <div 
               key={item.id} 
               style={{ 
